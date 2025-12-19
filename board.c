@@ -121,3 +121,23 @@ void display_board(game *g) {
     for (int j = 0; j < g->cols; j++) printf("--");
     printf("+\n");
 }
+
+/* 检查指定位置是否在棋盘范围内 */
+bool game_is_valid_position(const game *g, int row, int col){
+    if (row >= 0 && row < g->rows && col >= 0 && col < g->cols) return true;
+    else return false;
+}
+/* 获取指定位置的单元格状态 */
+cell game_get_cell_status(const game *g, int row, int col){
+    if (!game_is_valid_position(g, row, col)) {
+        return EMPTY;  // 如果位置无效，返回EMPTY
+    }
+    return g->board[row][col];  // 返回指定位置的单元格状态
+} 
+/* 设置指定位置的单元格状态 */
+void game_set_cell_status(game *g, int row, int col, cell value){
+    if (!game_is_valid_position(g, row, col)) {
+        return;  // 如果位置无效，直接返回
+    }
+    g->board[row][col] = value;  // 设置指定位置的单元格状态
+}
