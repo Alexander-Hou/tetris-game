@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+#include <conio.h>
+#include <windows.h> 
+#include <string.h>
+#include "tetris.h"
+
+// Windows控制台颜色定义
+#define COLOR_BLACK       0
+#define COLOR_BLUE        FOREGROUND_BLUE                    // 1
+#define COLOR_GREEN       FOREGROUND_GREEN                   // 2
+#define COLOR_CYAN        (FOREGROUND_BLUE | FOREGROUND_GREEN) // 3
+#define COLOR_RED         FOREGROUND_RED                     // 4
+#define COLOR_MAGENTA     (FOREGROUND_RED | FOREGROUND_BLUE)  // 5
+#define COLOR_YELLOW      (FOREGROUND_RED | FOREGROUND_GREEN) // 6
+#define COLOR_WHITE       (FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE) // 7
+#define COLOR_INTENSITY   FOREGROUND_INTENSITY               // 8
+
+// 字符定义：使用ASCII字符
+#define BLOCK '#'    // 方块字符
+#define EMPTY '.'    // 空格字符
+
+// Windows延迟函数
+void sleep_milli(int milliseconds)
+{
+    Sleep(milliseconds);  // 使用Windows的Sleep函数
+}
+
+// 控制台颜色设置函数
+void set_console_color(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
+    SetConsoleTextAttribute(hConsole, color);  // 设置文本颜色
+}
+// 重置控制台颜色为默认白色
+void reset_console_color() {
+    set_console_color(COLOR_WHITE | COLOR_INTENSITY);  // 重置为白色
+}
+// 清屏函数
+void clear_console() {
+    system("cls");  // 使用系统命令清屏
+}
+// 设置光标位置函数
+void set_cursor_position(int x, int y) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
+    COORD pos = {x, y};  // 设置光标位置结构体
+    SetConsoleCursorPosition(hConsole, pos);  // 设置光标位置
+}
+// 显示游戏板
+void display_board(game *g) {
+    set_cursor_position(0, 0);  // 将光标移动到左上角
+    printf("============ TETRIS ============\n");
+    printf("Score: %d  Level: %d  Lines: %d\n", 
+           g->points, g->level, g->lines_to_clear);
+    printf("\n");
+    printf("Hold: ");
+    if (g->block_stored != NULL) {
+        // 显示Hold方块的类型
+        switch(g->block_stored->typ) {
+            case TET_I: printf("[I]"); break;
+            case TET_J: printf("[J]"); break;
+            case TET_L: printf("[L]"); break;
+            case TET_O: printf("[O]"); break;
+            case TET_S: printf("[S]"); break;
+            case TET_T: printf("[T]"); break;
+            case TET_Z: printf("[Z]"); break;
+            default: printf("[?]"); break;
+        }
+    } else {
+        printf("[Empty]");
+    }
+    
+    printf("   Next: ");
+    // 显示Next方块的类型
+    switch(g->next_block) {
+        case TET_I: printf("[I]"); break;
+        case TET_J: printf("[J]"); break;
+        case TET_L: printf("[L]"); break;
+        case TET_O: printf("[O]"); break;
+        case TET_S: printf("[S]"); break;
+        case TET_T: printf("[T]"); break;
+        case TET_Z: printf("[Z]"); break;
+        default: printf("[?]"); break;
+    }
+    printf("\n\n");
+    // 游戏区域上边框
+    printf("+");
+    for (int j = 0; j < g->cols; j++){
+        printf("--");
+    }
+    printf("+\n");
+    // 游戏区域内容
+    for (int i = 0; i < g->rows; i++) {
+        printf("|");
+        for (int j = 0; j < g->cols; j++) {
+            cell c = g->board[i][j];
+            if (c != EMPTY) {
+                // 根据单元格类型设置颜色
+                switch (c) {
+                    case CELL_I: set_console_color(COLOR_CYAN | COLOR_INTENSITY); break;     // 青色
+                        case CELL_J: set_console_color(COLOR_BLUE | COLOR_INTENSITY); break;      // 蓝色
+                        case CELL_L: set_console_color(COLOR_RED | FOREGROUND_GREEN); break;     // 橙色（红+绿）
+                        case CELL_O: set_console_color(COLOR_YELLOW | COLOR_INTENSITY); break;   // 黄色
+                        case CELL_S: set_console_color(COLOR_GREEN | COLOR_INTENSITY); break;    // 绿色
+                        case CELL_T: set_console_color(COLOR_MAGENTA | COLOR_INTENSITY); break;  // 紫色
+                        case CELL_Z: set_console_color(COLOR_RED | COLOR_INTENSITY); break;      // 红色
+                        default: set_console_color(COLOR_WHITE); break;
+                }
+                printf("%c%c", BLOCK, BLOCK);  // 打印方块
+                reset_console_color();  // 重置颜色
+            } else {
+                printf("%c%c", EMPTY, EMPTY);  // 打印空格
+            }
+        }
+        printf("|\n");  // 行尾边框
+    }
+    
+    // 游戏区域下边框
+    printf("+");
+    for (int j = 0; j < g->cols; j++) printf("--");
+    printf("+\n");
+}
