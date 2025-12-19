@@ -19,8 +19,8 @@
 #define COLOR_INTENSITY   FOREGROUND_INTENSITY               // 8
 
 // 字符定义：使用ASCII字符
-#define BLOCK '#'    // 方块字符
-#define EMPTY '.'    // 空格字符
+#define BLOCK_CHAR '#'    // 方块字符
+#define EMPTY_CHAR '.'    // 空格字符
 
 // Windows延迟函数
 void sleep_milli(int milliseconds)
@@ -29,20 +29,20 @@ void sleep_milli(int milliseconds)
 }
 
 // 控制台颜色设置函数
-void set_console_color(int color) {
+static void set_console_color(int color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
     SetConsoleTextAttribute(hConsole, color);  // 设置文本颜色
 }
 // 重置控制台颜色为默认白色
-void reset_console_color() {
+static void reset_console_color() {
     set_console_color(COLOR_WHITE | COLOR_INTENSITY);  // 重置为白色
 }
 // 清屏函数
-void clear_console() {
+static void clear_console() {
     system("cls");  // 使用系统命令清屏
 }
 // 设置光标位置函数
-void set_cursor_position(int x, int y) {
+static void set_cursor_position(int x, int y) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
     COORD pos = {x, y};  // 设置光标位置结构体
     SetConsoleCursorPosition(hConsole, pos);  // 设置光标位置
@@ -107,10 +107,10 @@ void display_board(game *g) {
                         case CELL_Z: set_console_color(COLOR_RED | COLOR_INTENSITY); break;      // 红色
                         default: set_console_color(COLOR_WHITE); break;
                 }
-                printf("%c%c", BLOCK, BLOCK);  // 打印方块
+                printf("%c%c", BLOCK_CHAR, BLOCK_CHAR);  // 打印方块
                 reset_console_color();  // 重置颜色
             } else {
-                printf("%c%c", EMPTY, EMPTY);  // 打印空格
+                printf("%c%c", EMPTY_CHAR, EMPTY_CHAR);  // 打印空格
             }
         }
         printf("|\n");  // 行尾边框
@@ -124,8 +124,7 @@ void display_board(game *g) {
 
 /* 检查指定位置是否在棋盘范围内 */
 bool game_is_valid_position(const game *g, int row, int col){
-    if (row >= 0 && row < g->rows && col >= 0 && col < g->cols) return true;
-    else return false;
+    return (row >= 0 && row < g->rows && col >= 0 && col < g->cols);
 }
 /* 获取指定位置的单元格状态 */
 cell game_get_cell_status(const game *g, int row, int col){
