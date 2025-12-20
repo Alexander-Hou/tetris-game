@@ -8,7 +8,6 @@
 #define NUM_TYPES 7        //有7种不同形状的俄罗斯方块
 #define NUM_ORIENTATIONS 4 //每个方块有4种可能的旋转方向
 #define MAX_LEVEL 19       //游戏最高等级
-#define LINES_PER_LEVEL 10 //每消除10行升一级
 
 
 /*枚举定义*/
@@ -83,6 +82,7 @@ void game_store(game *g);  // 暂存/交换方块
 cell game_get_cell_status(const game *g, int row, int col);  // 获取指定位置的单元格状态
 void game_set_cell_status(game *g, int row, int col, cell value);  // 设置指定位置的单元格状态
 bool game_is_valid_position(const game *g, int row, int col);  // 检查指定位置是否在棋盘范围内
+void display_board(game *g);  // 显示游戏板
 
 /* 辅助函数(对应logic.c) */
 void game_create_new_block(game *g);  // 生成新的下落方块

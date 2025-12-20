@@ -27,7 +27,6 @@ void sleep_milli(int milliseconds)
 {
     Sleep(milliseconds);  // 使用Windows的Sleep函数
 }
-
 // 控制台颜色设置函数
 static void set_console_color(int color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
@@ -37,10 +36,7 @@ static void set_console_color(int color) {
 static void reset_console_color() {
     set_console_color(COLOR_WHITE | COLOR_INTENSITY);  // 重置为白色
 }
-// 清屏函数
-static void clear_console() {
-    system("cls");  // 使用系统命令清屏
-}
+
 // 设置光标位置函数
 static void set_cursor_position(int x, int y) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
