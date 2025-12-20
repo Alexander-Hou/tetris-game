@@ -3,29 +3,28 @@
 #include <time.h>
 #include <string.h>
 
-
 // 方块形状定义（三维数组）
 location shape[NUM_TYPES][NUM_ORIENTATIONS][TETRIS] = {
-    // I
-    {{{1, 0}, {1, 1}, {1, 2}, {1, 3}},
-     {{0, 2}, {1, 2}, {2, 2}, {3, 2}},
-     {{3, 0}, {3, 1}, {3, 2}, {3, 3}},
-     {{0, 1}, {1, 1}, {2, 1}, {3, 1}}},
+    // I (长条形)
+    {{{0, 1}, {1, 1}, {2, 1}, {3, 1}},    // 状态0
+     {{2, 0}, {2, 1}, {2, 2}, {2, 3}},    // 状态1
+     {{0, 2}, {1, 2}, {2, 2}, {3, 2}},    // 状态2
+     {{1, 0}, {1, 1}, {1, 2}, {1, 3}}},   // 状态3   // 垂直
     // J
-    {{{0, 0}, {1, 0}, {1, 1}, {1, 2}},
-     {{0, 1}, {0, 2}, {1, 1}, {2, 1}},
-     {{1, 0}, {1, 1}, {1, 2}, {2, 2}},
-     {{0, 1}, {1, 1}, {2, 0}, {2, 1}}},
+    {{{0, 0}, {1, 0}, {1, 1}, {1, 2}},    // L型
+     {{0, 1}, {1, 1}, {2, 0}, {2, 1}},    // 旋转90
+     {{1, 0}, {1, 1}, {1, 2}, {2, 2}},    // 旋转180
+     {{0, 0}, {0, 1}, {1, 0}, {2, 0}}},   // 旋转270
     // L
-    {{{0, 2}, {1, 0}, {1, 1}, {1, 2}},
-     {{0, 1}, {1, 1}, {2, 1}, {2, 2}},
-     {{1, 0}, {1, 1}, {1, 2}, {2, 0}},
-     {{0, 0}, {0, 1}, {1, 1}, {2, 1}}},
-    // O
-    {{{0, 1}, {0, 2}, {1, 1}, {1, 2}},
-     {{0, 1}, {0, 2}, {1, 1}, {1, 2}},
-     {{0, 1}, {0, 2}, {1, 1}, {1, 2}},
-     {{0, 1}, {0, 2}, {1, 1}, {1, 2}}},
+    {{{0, 2}, {1, 0}, {1, 1}, {1, 2}},    // 镜像L
+     {{0, 0}, {1, 0}, {2, 0}, {2, 1}},    // 旋转90
+     {{1, 0}, {1, 1}, {1, 2}, {2, 0}},    // 旋转180
+     {{0, 0}, {0, 1}, {1, 1}, {2, 1}}},   // 旋转270
+    // O (正方形)
+    {{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+     {{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+     {{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+     {{0, 0}, {0, 1}, {1, 0}, {1, 1}}},
     // S
     {{{0, 1}, {0, 2}, {1, 0}, {1, 1}},
      {{0, 1}, {1, 1}, {1, 2}, {2, 2}},
@@ -40,7 +39,7 @@ location shape[NUM_TYPES][NUM_ORIENTATIONS][TETRIS] = {
     {{{0, 0}, {0, 1}, {1, 1}, {1, 2}},
      {{0, 2}, {1, 1}, {1, 2}, {2, 1}},
      {{1, 0}, {1, 1}, {2, 1}, {2, 2}},
-     {{0, 1}, {1, 0}, {1, 1}, {2, 0}}},
+     {{0, 1}, {1, 0}, {1, 1}, {2, 0}}}
 };
 // 重力速度表（每个等级对应的下落速度，单位：毫秒）
 int GRAVITY_LEVEL[MAX_LEVEL + 1] = {
@@ -67,13 +66,18 @@ void game_init(game *g, int rows, int cols){
         g->board[i] = (cell *)malloc(cols * sizeof(cell));
         memset(g->board[i], EMPTY, cols * sizeof(cell));  // 初始化为空
     }
+    // 初始化当前方块和保留方块
     g->block_dropped = NULL;
     g->block_stored = NULL;
     g->store_used = false;
+    // 初始化游戏状态
     g->next_block = game_random_block();
     g->level = 0;
     g->points = 0;
-    g->lines_to_clear = 10;  // 初始升级所需行数
+    g->lines_to_clear = LINES_PER_LEVEL;  // 初始升级所需行数
+    // 生成第一个下落方块
+    g->next_block = game_random_block();
+    game_create_new_block(g); // 生成第一个下落方块
 }
 // 销毁游戏对象
 void game_destroy(game *g){
@@ -108,24 +112,24 @@ bool game_tick(game *g, move mov){
             game_drop(g); // 处理快速下落逻辑
             break;
         case MOV_STORE:
-            game_store_block(g); // 处理保留方块逻辑
+            game_store(g); // 处理保留方块逻辑
             break;
         case MOV_NONE:
         default:
             break;
     }
-    bool continue_drop = true; // 假设游戏继续
+    bool can_drop = true; // 假设游戏继续
     for (int i = 0; i < TETRIS; i++) {
         location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];  // 获取方块的每个单元格位置
         int new_row = g->block_dropped->loc.row + pos.row + 1; // 下落一行后的行位置
         int new_col = g->block_dropped->loc.col + pos.col; // 列位置
         // 检查是否碰撞到底部或其他方块
         if (new_row >= g->rows || (game_is_valid_position(g,new_col,new_row)&&game_get_cell_status(g,new_row,new_col)!=EMPTY)) {
-            continue_drop = false; // 碰撞，游戏可能结束
+            can_drop = false; // 碰撞，游戏可能结束
             break;
     }
 }
-    if (continue_drop) {
+    if (can_drop) {
         g->block_dropped->loc.row += 1; // 方块下落一行
         return true; // 游戏继续
     } else {
@@ -185,7 +189,6 @@ void game_create_new_block(game *g){
 }
 // 生成随机的方块类型 
 type game_random_block(void){
-    srand((unsigned int)time(NULL)); // 使用当前时间作为随机种子
     return (type)(rand() % NUM_TYPES); // 返回随机方块类型
 }
 // 检查并消除完整的行，返回消除的行数
