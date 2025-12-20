@@ -194,26 +194,29 @@ type game_random_block(void){
 // 检查并消除完整的行，返回消除的行数
 int game_check_lines(game *g){
     int lines_cleared = 0; // 记录消除的行数
-    for (int i = 0; i < g->rows; i++) {
+    int row = g->rows - 1;  // 从底部开始检查
+    while (row >= 0) {
         bool full_line = true; // 假设当前行是满的
-        for (int j = 0; j < g->cols; j++) {
-            if (g->board[i][j] == EMPTY) {
+        for (int col = 0; col < g->cols; col++) {
+            if (g->board[row][col] == EMPTY) {
                 full_line = false; // 发现空单元格，当前行不是满的
                 break;
             }
         }
         if (full_line == true) {
-            // 消除当前行
-            for (int row = i; row > 0; row--) {
-                for (int col = 0; col < g->cols; col++) {
-                    g->board[row][col] = g->board[row - 1][col]; // 上移一行
+            lines_cleared++; // 发现一行满的
+            // 消除当前行，所有上方行下移一行
+            for (int r = row; r > 0; r--) {
+                for (int c = 0; c < g->cols; c++) {
+                    g->board[r][c] = g->board[r - 1][c]; 
                 }
             }
             // 清空顶部行
-            for (int col = 0; col < g->cols; col++) {
-                g->board[0][col] = EMPTY;
+            for (int c = 0; c < g->cols; c++) {
+                g->board[0][c] = EMPTY;
             }
-            lines_cleared++; // 增加消除的行数
+        } else {
+            row--; // 仅在未消除行时才向上移动
         }
     }
     return lines_cleared; // 返回总共消除的行数

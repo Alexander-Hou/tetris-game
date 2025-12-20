@@ -15,6 +15,9 @@ int main(int argc, char **argv) {
     // 创建新游戏
     g = game_create(22, 10);
     
+    // 随机数种子调用
+    srand((unsigned int)time(NULL));  
+    
     // Windows控制台设置
     system("cls");
     printf("Starting Tetris...\n");
@@ -75,10 +78,10 @@ int main(int argc, char **argv) {
                     case 'Q':
                         running = false;
                         break;
-                    case 'p':
+                    /*case 'p':
                     case 'P':
                         pause_game();
-                        break;
+                        break;*/
                 }
             }
         }
@@ -87,11 +90,11 @@ int main(int argc, char **argv) {
     }
     
     // 游戏结束
-    clear_console();
+    system("cls");
     printf("Game over!\n");
     printf("You finished with %d points on level %d.\n", g->points, g->level);
     // 清理
-    game_delete(g);
+    game_destroy(g);
     printf("\nPress any key to exit...");
     _getch();
     return 0;
