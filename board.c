@@ -22,11 +22,6 @@
 #define BLOCK_CHAR '#'    // 方块字符
 #define EMPTY_CHAR '.'    // 空格字符
 
-// Windows延迟函数
-void sleep_milli(int milliseconds)
-{
-    Sleep(milliseconds);  // 使用Windows的Sleep函数
-}
 // 控制台颜色设置函数
 static void set_console_color(int color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
@@ -66,7 +61,6 @@ void display_board(game *g) {
     } else {
         printf("[Empty]");
     }
-    
     printf("   Next: ");
     // 显示Next方块的类型
     switch(g->next_block) {
@@ -86,11 +80,36 @@ void display_board(game *g) {
         printf("--");
     }
     printf("+\n");
+    // 创建临时数组来合并 board 和当前下落方块
+    cell display_board[g->rows][g->cols];
+    
+    // 复制 board 内容
+    for (int i = 0; i < g->rows; i++) {
+        for (int j = 0; j < g->cols; j++) {
+            display_board[i][j] = g->board[i][j];
+        }
+    }
+    
+    // 添加当前下落方块到临时数组
+    if (g->block_dropped != NULL) {
+        for (int i = 0; i < TETRIS; i++) {
+            location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
+            int board_row = g->block_dropped->loc.row + pos.row;
+            int board_col = g->block_dropped->loc.col + pos.col;
+            
+            // 检查位置是否在有效范围内
+            if (board_row >= 0 && board_row < g->rows && 
+                board_col >= 0 && board_col < g->cols) {
+                cell cell_type = (cell)(g->block_dropped->typ + 1);
+                display_board[board_row][board_col] = cell_type;
+            }
+        }
+    }
     // 游戏区域内容
     for (int i = 0; i < g->rows; i++) {
         printf("|");
         for (int j = 0; j < g->cols; j++) {
-            cell c = g->board[i][j];
+            cell c = display_board[i][j];
             if (c != EMPTY) {
                 // 根据单元格类型设置颜色
                 switch (c) {

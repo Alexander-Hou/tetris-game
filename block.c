@@ -68,13 +68,16 @@ void game_store(game *g){
     if (g->store_used == true) {
         return; // 已经使用过保留功能，直接返回
     }
-    if (g->block_stored==NULL || g->block_stored->typ == -1) {
-        // 如果没有保留方块，存储当前方块并生成新方块
+    if (g->block_stored==NULL) {
         g->block_stored = (tetris*)malloc(sizeof(tetris));  // 分配内存
+        if (g->block_stored == NULL) {
+            return; // 内存分配失败，直接返回
+        }
         *g->block_stored = *g->block_dropped;
         game_create_new_block(g);
-        g->store_used = true; // 标记保留功能已使用
-        return;
+    } else if (g->block_stored->typ == -1) {
+        *g->block_stored = *g->block_dropped;
+        game_create_new_block(g);
     } else {
         // 交换当前方块和保留方块
         tetris temp = *g->block_dropped;
