@@ -11,6 +11,7 @@ int main(int argc, char **argv) {
     game *g;  // 游戏对象指针
     move mov = MOV_NONE;  // 当前玩家操作
     bool running = true;  // 游戏运行状态
+    bool paused = false; // 游戏暂停状态
     
     // 创建新游戏
     g = game_create(22, 10);
@@ -32,11 +33,50 @@ int main(int argc, char **argv) {
     
     // 游戏主循环
     while (running) {
+        if (!paused) {
         // 执行游戏逻辑
         running = game_tick(g, mov);
-        
         // 显示游戏界面
         display_board(g);
+        } else {
+            // 游戏暂停时显示暂停信息
+            system("cls");
+            printf("============ TETRIS [PAUSED] ============\n");
+            printf("Score: %d  Level: %d  Lines: %d\n", 
+                   g->points, g->level, g->lines_to_clear);
+            printf("\n");
+            printf("Hold: ");
+            if (g->block_stored != NULL) {
+                // 显示Hold方块的类型
+                switch(g->block_stored->typ) {
+                    case TET_I: printf("[I]"); break;
+                    case TET_J: printf("[J]"); break;
+                    case TET_L: printf("[L]"); break;
+                    case TET_O: printf("[O]"); break;
+                    case TET_S: printf("[S]"); break;
+                    case TET_T: printf("[T]"); break;
+                    case TET_Z: printf("[Z]"); break;
+                    default: printf("[?]"); break;
+                }
+            } else {
+                printf("[Empty]");
+            }
+            printf("   Next: ");
+            // 显示Next方块的类型
+            switch(g->next_block) {
+                case TET_I: printf("[I]"); break;
+                case TET_J: printf("[J]"); break;
+                case TET_L: printf("[L]"); break;
+                case TET_O: printf("[O]"); break;
+                case TET_S: printf("[S]"); break;
+                case TET_T: printf("[T]"); break;
+                case TET_Z: printf("[Z]"); break;
+                default: printf("[?]"); break;
+            }
+            printf("\n\n");
+            printf("\n=== GAME PAUSED ===\n");
+            printf("Press P to resume\n");
+        }
         
         // 处理输入
         mov = MOV_NONE;
@@ -74,21 +114,24 @@ int main(int argc, char **argv) {
                     case ' ':
                         mov = MOV_STORE;
                         break;
+                    case 'p':
+                    case 'P':
+                        paused = !paused; // 切换暂停状态
+                        if (!paused) {
+                            // 恢复时清屏
+                            system("cls");
+                        }
+                        break;
                     case 'q':
                     case 'Q':
                         running = false;
                         break;
-                    /*case 'p':
-                    case 'P':
-                        pause_game();
-                        break;*/
                 }
             }
         }
         // 延迟
         Sleep(50);
     }
-    
     // 游戏结束
     system("cls");
     printf("Game over!\n");
