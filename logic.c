@@ -74,6 +74,7 @@ void game_init(game *g, int rows, int cols){
     g->level = 0;
     g->points = 0;
     g->lines_to_clear = 10;  // 初始升级所需行数
+    g->tick_timer = 0;  // 初始化计时器
     // 生成第一个下落方块
     g->next_block = game_random_block();
     game_create_new_block(g); // 生成第一个下落方块
@@ -95,84 +96,118 @@ void game_destroy(game *g){
     }
     free(g);  // 释放游戏对象内存
 }
-// 处理游戏1的每个tick，返回游戏是否继续
+// 处理游戏的每个tick，返回游戏是否继续
 bool game_tick(game *g, move mov){
+    // 处理用户输入
     switch(mov){
         case MOV_LEFT:
-            game_move_left(g); // 处理左移逻辑
+            game_move_left(g);
             break;
         case MOV_RIGHT:
-            game_move_right(g); // 处理右移逻辑
+            game_move_right(g);
             break;
         case MOV_CLOCK:
-            game_clock_roll(g); // 处理顺时针旋转逻辑
+            game_clock_roll(g);
             break;
         case MOV_DROP:
-            game_drop(g); // 处理快速下落逻辑
+            game_drop(g);
             break;
         case MOV_STORE:
-            game_store(g); // 处理保留方块逻辑
+            game_store(g);
             break;
         case MOV_NONE:
         default:
             break;
     }
-    bool can_drop = true; // 假设游戏继续
-    for (int i = 0; i < TETRIS; i++) {
-        location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];  // 获取方块的每个单元格位置
-        int new_row = g->block_dropped->loc.row + pos.row + 1; // 下落一行后的行位置
-        int new_col = g->block_dropped->loc.col + pos.col; // 列位置
-        // 检查是否碰撞到底部或其他方块
-        if (new_row >= g->rows || (game_is_valid_position(g,new_row,new_col)&&game_get_cell_status(g,new_row,new_col)!=EMPTY)) {
-            can_drop = false; // 碰撞，游戏可能结束
-            break;
-        }   
-    }
-    // 检查方块是否可以下落
-    if (can_drop) {
-        g->block_dropped->loc.row += 1; // 可以下落，方块下落一行
-        return true; // 游戏继续
-    } else {
-        // 不能下落，固定方块
-        for (int i = 0; i < TETRIS; i++) {
-            location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];  // 获取方块的每个单元格位置
-            int board_row = g->block_dropped->loc.row + pos.row; // 计算在游戏板上的行位置
-            int board_col = g->block_dropped->loc.col + pos.col; // 计算在游戏板上的列位置
-            if (game_is_valid_position(g, board_row, board_col)) {
-                cell cell_type = (cell)(g->block_dropped->typ + 1); // 固定方块
-                game_set_cell_status(g, board_row, board_col, cell_type); // 设置单元格状态
-            }
-        }
-        // 检查是否有方块在顶部之外
-        bool block_above_top = false;
+    
+    g->tick_timer += 50; // 假设每个tick为50毫秒
+    
+    if (g->tick_timer >= GRAVITY_LEVEL[g->level]) {
+        g->tick_timer = 0; // 重置计时器
+        
+        bool can_drop = true;
+        
+        // 检查是否可以下落
         for (int i = 0; i < TETRIS; i++) {
             location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
-            int board_row = g->block_dropped->loc.row + pos.row;
-            if (board_row <= 1) {
-                block_above_top = true;
+            int new_row = g->block_dropped->loc.row + pos.row + 1;
+            int new_col = g->block_dropped->loc.col + pos.col;
+            
+            // 检查是否碰撞到底部或其他方块
+            if (new_row >= g->rows || 
+                (game_is_valid_position(g, new_row, new_col) && 
+                 game_get_cell_status(g, new_row, new_col) != EMPTY)) {
+                can_drop = false;
                 break;
             }
         }
-        if (block_above_top) {
-            return false; // 游戏结束
+        
+        if (can_drop) {
+            g->block_dropped->loc.row += 1; // 可以下落，方块下落一行
+            return true; // 游戏继续
+        } else {
+            // 不能下落，固定方块
+            for (int i = 0; i < TETRIS; i++) {
+                location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
+                int board_row = g->block_dropped->loc.row + pos.row;
+                int board_col = g->block_dropped->loc.col + pos.col;
+                
+                if (game_is_valid_position(g, board_row, board_col)) {
+                    cell cell_type = (cell)(g->block_dropped->typ + 1);
+                    game_set_cell_status(g, board_row, board_col, cell_type);
+                }
+            }
+            
+            // 检查是否有方块在顶部之外
+            bool block_above_top = false;
+            for (int i = 0; i < TETRIS; i++) {
+                location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
+                int board_row = g->block_dropped->loc.row + pos.row;
+                if (board_row < 0) {  // 改为 < 0 而不是 <= 1
+                    block_above_top = true;
+                    break;
+                }
+            }
+            
+            if (block_above_top) {
+                return false; // 游戏结束
+            }
+            
+            // 检查并消除完整的行
+            int lines_cleared = game_check_lines(g);
+            if (lines_cleared > 0) {
+                game_update_grade(g, lines_cleared);
+            }
+            
+            // 检查游戏是否结束（新方块生成位置是否被占用）
+            if (game_is_over(g)) {
+                return false;
+            }
+            
+            // 生成新的下落方块
+            game_create_new_block(g);
+            
+            // 重置保留标志
+            g->store_used = false;
+            
+            // 检查新方块是否可以放置
+            for (int i = 0; i < TETRIS; i++) {
+                location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
+                int board_row = g->block_dropped->loc.row + pos.row;
+                int board_col = g->block_dropped->loc.col + pos.col;
+                
+                if (board_row >= 0 && board_row < g->rows && 
+                    board_col >= 0 && board_col < g->cols) {
+                    if (g->board[board_row][board_col] != EMPTY) {
+                        return false; // 游戏结束
+                    }
+                }
+            }
         }
-        // 检查并消除完整的行
-        int lines_cleared = game_check_lines(g);
-        if (lines_cleared > 0) {
-            game_update_grade(g, lines_cleared); // 更新分数和等级
-        }
-        // 检查游戏是否结束
-        if (game_is_over(g)) {
-            return false; // 游戏结束
-        }
-        // 生成新的下落方块
-        game_create_new_block(g);
-        // 重置保留标志
-        g->store_used = false; 
-        return true; // 游戏继续
     }
+    
+    return true; // 游戏继续
 }
-
 // 检查游戏是否结束  
 bool game_is_over(const game *g){ 
     // 如果新方块生成位置被占用，游戏结束

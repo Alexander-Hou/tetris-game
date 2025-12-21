@@ -51,6 +51,7 @@ typedef struct {
     int level;             // 当前等级
     int points;            // 当前得分
     int lines_to_clear;   // 升级所需消除的行数
+    int tick_timer;      // 用于控制下落速度的计时器
 } game;
 /*核心游戏结构体*/
 
