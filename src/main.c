@@ -21,6 +21,40 @@ int main(int argc, char **argv) {
     
     // Windows控制台设置
     system("cls");
+
+    // 添加启动界面
+    printf("\n\n\n");
+    printf("            ***********************************\n");
+    printf("                     TETRIS GAME V1.0         \n");
+    printf("            ***********************************\n");
+    printf("\n");
+    printf("          _______ ______  _______  _____   _  _____ \n");
+    printf("         |__   __|  ____||__   __||  __ \\ | |/ ____|\n");
+    printf("            | |  | |__      | |   | |__) || | (___  \n");
+    printf("            | |  |  __|     | |   |  _  / | |\\___ \\ \n");
+    printf("            | |  | |____    | |   | | \\ \\ | | ___) |\n");
+    printf("            |_|  |______|   |_|   |_|  \\_\\|_||____/ \n");
+    printf("\n\n\n");
+    printf("             +-------- CONTROL KEYS --------+\n");
+    printf("             |                              |\n");
+    printf("             |   Move Left:   <- or A       |\n");
+    printf("             |   Move Right:  -> or D       |\n");
+    printf("             |   Rotate:       ^ or W       |\n");
+    printf("             |   Hard Drop:    v or S       |\n");
+    printf("             |   Hold Piece:    SPACE       |\n");
+    printf("             |   Pause/Resume:   P          |\n");
+    printf("             |   Quit Game:      Q          |\n");
+    printf("             |                              |\n");
+    printf("             +------------------------------+\n");
+    printf("\n");
+    printf("            ***********************************\n");
+    printf("                   Press any key to play       \n");
+    printf("            ***********************************\n");
+    
+    _getch(); // 等待按键开始游戏
+
+    // Windows控制台设置
+    system("cls");
     printf("Starting Tetris...\n");
     Sleep(500);
     
