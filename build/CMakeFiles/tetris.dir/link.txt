@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\tetris.dir/objects.a
+C:\llvm-mingw-20251216-ucrt-x86_64\bin\llvm-ar.exe qc CMakeFiles\tetris.dir/objects.a @CMakeFiles\tetris.dir\objects1.rsp
+C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe -g -Wl,--whole-archive CMakeFiles\tetris.dir/objects.a -Wl,--no-whole-archive -o bin\tetris.exe -Wl,--out-implib,libtetris.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\tetris.dir\linkLibs.rsp

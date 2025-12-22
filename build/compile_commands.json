@@ -1,0 +1,26 @@
+[
+{
+  "directory": "E:/project/tetris v1.0/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\main.c.obj -c \"E:\\project\\tetris v1.0\\src\\main.c\"",
+  "file": "E:/project/tetris v1.0/src/main.c",
+  "output": "CMakeFiles/tetris.dir/src/main.c.obj"
+},
+{
+  "directory": "E:/project/tetris v1.0/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\logic.c.obj -c \"E:\\project\\tetris v1.0\\src\\logic.c\"",
+  "file": "E:/project/tetris v1.0/src/logic.c",
+  "output": "CMakeFiles/tetris.dir/src/logic.c.obj"
+},
+{
+  "directory": "E:/project/tetris v1.0/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\board.c.obj -c \"E:\\project\\tetris v1.0\\src\\board.c\"",
+  "file": "E:/project/tetris v1.0/src/board.c",
+  "output": "CMakeFiles/tetris.dir/src/board.c.obj"
+},
+{
+  "directory": "E:/project/tetris v1.0/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\block.c.obj -c \"E:\\project\\tetris v1.0\\src\\block.c\"",
+  "file": "E:/project/tetris v1.0/src/block.c",
+  "output": "CMakeFiles/tetris.dir/src/block.c.obj"
+}
+]
