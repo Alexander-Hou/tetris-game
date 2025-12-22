@@ -298,6 +298,6 @@ void game_update_grade(game *g, int lines_cleared){
     g->lines_to_clear -= lines_cleared; // 减少升级所需行数
     while (g->lines_to_clear <= 0 && g->level < MAX_LEVEL) {
         g->level++; // 升级
-        g->lines_to_clear += 10 + g->level * 5; // 更新升级所需行数
+        g->lines_to_clear = 10 + (g->level) * 5; // 更新升级所需行数
     }
 }
