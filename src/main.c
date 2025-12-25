@@ -44,6 +44,7 @@ int main(int argc, char **argv) {
     printf("             |   Hold Piece:    SPACE       |\n");
     printf("             |   Pause/Resume:   P          |\n");
     printf("             |   Quit Game:      Q          |\n");
+    printf("             |   Restart Game:   R          |\n");
     printf("             |                              |\n");
     printf("             +------------------------------+\n");
     printf("\n");
@@ -156,6 +157,17 @@ int main(int argc, char **argv) {
                             system("cls");
                         }
                         break;
+                    case 'r':
+                    case 'R':
+                        // 重新开始游戏
+                        game_destroy(g); // 销毁当前游戏
+                        g = game_create(22, 10); // 创建新游戏
+                        paused = false; // 确保游戏不在暂停状态
+                        system("cls"); // 清屏
+                        printf("Game restarted!\n");
+                        Sleep(500);
+                        system("cls"); // 再次清屏，准备显示新游戏
+                        break;
                     case 'q':
                     case 'Q':
                         running = false;
@@ -172,7 +184,8 @@ int main(int argc, char **argv) {
     printf("You finished with %d points on level %d.\n", g->points, g->level);
     // 清理
     game_destroy(g);
-    printf("\nPress any key to exit...");
+    printf("Thank you for playing Tetris!\n");
+    printf("Press R to restart or any other key to exit.\n");
     _getch();
     return 0;
 }

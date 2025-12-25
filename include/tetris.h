@@ -1,5 +1,5 @@
 #ifndef TETRIS_H
-#define TETRIS_H  //标准的头文件保护
+#define TETRIS_H  // 标准的头文件保护
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -55,7 +55,7 @@ typedef struct {
 } game;
 /*核心游戏结构体*/
 
-/*声明方块形状数据（三维数组方式）*/
+/* 声明方块形状数据（三维数组方式）*/
 extern location shape[NUM_TYPES][NUM_ORIENTATIONS][TETRIS];  // 每种类型和旋转方向对应的4个小方块位置
 /* 声明重力速度表 */
 extern int GRAVITY_LEVEL[MAX_LEVEL + 1];  // 每个等级对应不同的下落速度

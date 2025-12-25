@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/project/tetris v1.0/src/block.c" "CMakeFiles/tetris.dir/src/block.c.obj" "gcc" "CMakeFiles/tetris.dir/src/block.c.obj.d"
-  "E:/project/tetris v1.0/src/board.c" "CMakeFiles/tetris.dir/src/board.c.obj" "gcc" "CMakeFiles/tetris.dir/src/board.c.obj.d"
-  "E:/project/tetris v1.0/src/logic.c" "CMakeFiles/tetris.dir/src/logic.c.obj" "gcc" "CMakeFiles/tetris.dir/src/logic.c.obj.d"
-  "E:/project/tetris v1.0/src/main.c" "CMakeFiles/tetris.dir/src/main.c.obj" "gcc" "CMakeFiles/tetris.dir/src/main.c.obj.d"
+  "E:/project/tetris_game/src/block.c" "CMakeFiles/tetris.dir/src/block.c.obj" "gcc" "CMakeFiles/tetris.dir/src/block.c.obj.d"
+  "E:/project/tetris_game/src/board.c" "CMakeFiles/tetris.dir/src/board.c.obj" "gcc" "CMakeFiles/tetris.dir/src/board.c.obj.d"
+  "E:/project/tetris_game/src/logic.c" "CMakeFiles/tetris.dir/src/logic.c.obj" "gcc" "CMakeFiles/tetris.dir/src/logic.c.obj.d"
+  "E:/project/tetris_game/src/main.c" "CMakeFiles/tetris.dir/src/main.c.obj" "gcc" "CMakeFiles/tetris.dir/src/main.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

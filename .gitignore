@@ -1,0 +1,36 @@
+# 忽略编译生成的文件
+build/
+*.exe
+*.o
+*.obj
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# 忽略CMake生成的文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.ninja
+.build/
+.cmake/
+
+# 忽略IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 忽略临时文件
+*.tmp
+*.log
+*.cache

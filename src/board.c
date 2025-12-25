@@ -93,9 +93,9 @@ void display_board(game *g) {
     // 添加当前下落方块到临时数组
     if (g->block_dropped != NULL) {
         for (int i = 0; i < TETRIS; i++) {
-            location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];
-            int board_row = g->block_dropped->loc.row + pos.row;
-            int board_col = g->block_dropped->loc.col + pos.col;
+            location pos = shape[g->block_dropped->typ][g->block_dropped->ori][i];  // 获取方块的相对位置
+            int board_row = g->block_dropped->loc.row + pos.row;  // 计算在游戏板上的行位置
+            int board_col = g->block_dropped->loc.col + pos.col;  // 计算在游戏板上的列位置
             
             // 检查位置是否在有效范围内
             if (board_row >= 0 && board_row < g->rows && 
