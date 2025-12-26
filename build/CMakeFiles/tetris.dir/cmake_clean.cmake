@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris.dir/src/logic.c.obj.d"
   "CMakeFiles/tetris.dir/src/main.c.obj"
   "CMakeFiles/tetris.dir/src/main.c.obj.d"
+  "CMakeFiles/tetris.dir/src/manage.c.obj"
+  "CMakeFiles/tetris.dir/src/manage.c.obj.d"
   "bin/tetris.exe"
   "bin/tetris.exe.manifest"
   "bin/tetris.pdb"

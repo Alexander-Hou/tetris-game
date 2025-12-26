@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = E:\project\tetris_game
+CMAKE_SOURCE_DIR = E:\project\tetris-game
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = E:\project\tetris_game\build
+CMAKE_BINARY_DIR = E:\project\tetris-game\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\project\tetris_game\build\CMakeFiles E:\project\tetris_game\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\project\tetris-game\build\CMakeFiles E:\project\tetris-game\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\project\tetris_game\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\project\tetris-game\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -224,6 +224,30 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/manage.obj: src/manage.c.obj
+.PHONY : src/manage.obj
+
+# target to build an object file
+src/manage.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.obj
+.PHONY : src/manage.c.obj
+
+src/manage.i: src/manage.c.i
+.PHONY : src/manage.i
+
+# target to preprocess a source file
+src/manage.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.i
+.PHONY : src/manage.c.i
+
+src/manage.s: src/manage.c.s
+.PHONY : src/manage.s
+
+# target to generate assembly for a file
+src/manage.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.s
+.PHONY : src/manage.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -245,6 +269,9 @@ help:
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/manage.obj
+	@echo ... src/manage.i
+	@echo ... src/manage.s
 .PHONY : help
 
 

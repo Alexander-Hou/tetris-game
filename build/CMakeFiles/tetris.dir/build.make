@@ -52,10 +52,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = E:\project\tetris_game
+CMAKE_SOURCE_DIR = E:\project\tetris-game
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = E:\project\tetris_game\build
+CMAKE_BINARY_DIR = E:\project\tetris-game\build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tetris.dir/depend.make
@@ -73,70 +73,86 @@ CMakeFiles/tetris.dir/codegen:
 
 CMakeFiles/tetris.dir/src/main.c.obj: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/src/main.c.obj: CMakeFiles/tetris.dir/includes_C.rsp
-CMakeFiles/tetris.dir/src/main.c.obj: E:/project/tetris_game/src/main.c
+CMakeFiles/tetris.dir/src/main.c.obj: E:/project/tetris-game/src/main.c
 CMakeFiles/tetris.dir/src/main.c.obj: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris_game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/src/main.c.obj"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/main.c.obj -MF CMakeFiles\tetris.dir\src\main.c.obj.d -o CMakeFiles\tetris.dir\src\main.c.obj -c E:\project\tetris_game\src\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/src/main.c.obj"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/main.c.obj -MF CMakeFiles\tetris.dir\src\main.c.obj.d -o CMakeFiles\tetris.dir\src\main.c.obj -c E:\project\tetris-game\src\main.c
 
 CMakeFiles/tetris.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/main.c.i"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris_game\src\main.c > CMakeFiles\tetris.dir\src\main.c.i
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris-game\src\main.c > CMakeFiles\tetris.dir\src\main.c.i
 
 CMakeFiles/tetris.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/main.c.s"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris_game\src\main.c -o CMakeFiles\tetris.dir\src\main.c.s
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris-game\src\main.c -o CMakeFiles\tetris.dir\src\main.c.s
 
 CMakeFiles/tetris.dir/src/logic.c.obj: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/src/logic.c.obj: CMakeFiles/tetris.dir/includes_C.rsp
-CMakeFiles/tetris.dir/src/logic.c.obj: E:/project/tetris_game/src/logic.c
+CMakeFiles/tetris.dir/src/logic.c.obj: E:/project/tetris-game/src/logic.c
 CMakeFiles/tetris.dir/src/logic.c.obj: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris_game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/src/logic.c.obj"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/logic.c.obj -MF CMakeFiles\tetris.dir\src\logic.c.obj.d -o CMakeFiles\tetris.dir\src\logic.c.obj -c E:\project\tetris_game\src\logic.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/src/logic.c.obj"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/logic.c.obj -MF CMakeFiles\tetris.dir\src\logic.c.obj.d -o CMakeFiles\tetris.dir\src\logic.c.obj -c E:\project\tetris-game\src\logic.c
 
 CMakeFiles/tetris.dir/src/logic.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/logic.c.i"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris_game\src\logic.c > CMakeFiles\tetris.dir\src\logic.c.i
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris-game\src\logic.c > CMakeFiles\tetris.dir\src\logic.c.i
 
 CMakeFiles/tetris.dir/src/logic.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/logic.c.s"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris_game\src\logic.c -o CMakeFiles\tetris.dir\src\logic.c.s
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris-game\src\logic.c -o CMakeFiles\tetris.dir\src\logic.c.s
 
 CMakeFiles/tetris.dir/src/board.c.obj: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/src/board.c.obj: CMakeFiles/tetris.dir/includes_C.rsp
-CMakeFiles/tetris.dir/src/board.c.obj: E:/project/tetris_game/src/board.c
+CMakeFiles/tetris.dir/src/board.c.obj: E:/project/tetris-game/src/board.c
 CMakeFiles/tetris.dir/src/board.c.obj: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris_game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tetris.dir/src/board.c.obj"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/board.c.obj -MF CMakeFiles\tetris.dir\src\board.c.obj.d -o CMakeFiles\tetris.dir\src\board.c.obj -c E:\project\tetris_game\src\board.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tetris.dir/src/board.c.obj"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/board.c.obj -MF CMakeFiles\tetris.dir\src\board.c.obj.d -o CMakeFiles\tetris.dir\src\board.c.obj -c E:\project\tetris-game\src\board.c
 
 CMakeFiles/tetris.dir/src/board.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/board.c.i"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris_game\src\board.c > CMakeFiles\tetris.dir\src\board.c.i
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris-game\src\board.c > CMakeFiles\tetris.dir\src\board.c.i
 
 CMakeFiles/tetris.dir/src/board.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/board.c.s"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris_game\src\board.c -o CMakeFiles\tetris.dir\src\board.c.s
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris-game\src\board.c -o CMakeFiles\tetris.dir\src\board.c.s
 
 CMakeFiles/tetris.dir/src/block.c.obj: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/src/block.c.obj: CMakeFiles/tetris.dir/includes_C.rsp
-CMakeFiles/tetris.dir/src/block.c.obj: E:/project/tetris_game/src/block.c
+CMakeFiles/tetris.dir/src/block.c.obj: E:/project/tetris-game/src/block.c
 CMakeFiles/tetris.dir/src/block.c.obj: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris_game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tetris.dir/src/block.c.obj"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/block.c.obj -MF CMakeFiles\tetris.dir\src\block.c.obj.d -o CMakeFiles\tetris.dir\src\block.c.obj -c E:\project\tetris_game\src\block.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tetris.dir/src/block.c.obj"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/block.c.obj -MF CMakeFiles\tetris.dir\src\block.c.obj.d -o CMakeFiles\tetris.dir\src\block.c.obj -c E:\project\tetris-game\src\block.c
 
 CMakeFiles/tetris.dir/src/block.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/block.c.i"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris_game\src\block.c > CMakeFiles\tetris.dir\src\block.c.i
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris-game\src\block.c > CMakeFiles\tetris.dir\src\block.c.i
 
 CMakeFiles/tetris.dir/src/block.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/block.c.s"
-	C:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris_game\src\block.c -o CMakeFiles\tetris.dir\src\block.c.s
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris-game\src\block.c -o CMakeFiles\tetris.dir\src\block.c.s
+
+CMakeFiles/tetris.dir/src/manage.c.obj: CMakeFiles/tetris.dir/flags.make
+CMakeFiles/tetris.dir/src/manage.c.obj: CMakeFiles/tetris.dir/includes_C.rsp
+CMakeFiles/tetris.dir/src/manage.c.obj: E:/project/tetris-game/src/manage.c
+CMakeFiles/tetris.dir/src/manage.c.obj: CMakeFiles/tetris.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/tetris.dir/src/manage.c.obj"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/manage.c.obj -MF CMakeFiles\tetris.dir\src\manage.c.obj.d -o CMakeFiles\tetris.dir\src\manage.c.obj -c E:\project\tetris-game\src\manage.c
+
+CMakeFiles/tetris.dir/src/manage.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/manage.c.i"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\project\tetris-game\src\manage.c > CMakeFiles\tetris.dir\src\manage.c.i
+
+CMakeFiles/tetris.dir/src/manage.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/manage.c.s"
+	C:\llvm-mingw-20251216-ucrt-x86_64\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\project\tetris-game\src\manage.c -o CMakeFiles\tetris.dir\src\manage.c.s
 
 # Object files for target tetris
 tetris_OBJECTS = \
 "CMakeFiles/tetris.dir/src/main.c.obj" \
 "CMakeFiles/tetris.dir/src/logic.c.obj" \
 "CMakeFiles/tetris.dir/src/board.c.obj" \
-"CMakeFiles/tetris.dir/src/block.c.obj"
+"CMakeFiles/tetris.dir/src/block.c.obj" \
+"CMakeFiles/tetris.dir/src/manage.c.obj"
 
 # External object files for target tetris
 tetris_EXTERNAL_OBJECTS =
@@ -145,11 +161,12 @@ bin/tetris.exe: CMakeFiles/tetris.dir/src/main.c.obj
 bin/tetris.exe: CMakeFiles/tetris.dir/src/logic.c.obj
 bin/tetris.exe: CMakeFiles/tetris.dir/src/board.c.obj
 bin/tetris.exe: CMakeFiles/tetris.dir/src/block.c.obj
+bin/tetris.exe: CMakeFiles/tetris.dir/src/manage.c.obj
 bin/tetris.exe: CMakeFiles/tetris.dir/build.make
 bin/tetris.exe: CMakeFiles/tetris.dir/linkLibs.rsp
 bin/tetris.exe: CMakeFiles/tetris.dir/objects1.rsp
 bin/tetris.exe: CMakeFiles/tetris.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\project\tetris_game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable bin\tetris.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\project\tetris-game\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable bin\tetris.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\tetris.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -161,6 +178,6 @@ CMakeFiles/tetris.dir/clean:
 .PHONY : CMakeFiles/tetris.dir/clean
 
 CMakeFiles/tetris.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\project\tetris_game E:\project\tetris_game E:\project\tetris_game\build E:\project\tetris_game\build E:\project\tetris_game\build\CMakeFiles\tetris.dir\DependInfo.cmake "--color=$(COLOR)" tetris
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\project\tetris-game E:\project\tetris-game E:\project\tetris-game\build E:\project\tetris-game\build E:\project\tetris-game\build\CMakeFiles\tetris.dir\DependInfo.cmake "--color=$(COLOR)" tetris
 .PHONY : CMakeFiles/tetris.dir/depend
 

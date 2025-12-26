@@ -31,19 +31,101 @@ static void set_console_color(int color) {
 static void reset_console_color() {
     set_console_color(COLOR_WHITE | COLOR_INTENSITY);  // 重置为白色
 }
-
 // 设置光标位置函数
 static void set_cursor_position(int x, int y) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // 获取控制台句柄
     COORD pos = {x, y};  // 设置光标位置结构体
     SetConsoleCursorPosition(hConsole, pos);  // 设置光标位置
 }
+// 显示启动界面
+void display_start_screen(game *g) {
+    system("cls"); // 清屏
+    printf("\n\n\n");
+    printf("            ***********************************\n");
+    printf("                     TETRIS GAME V1.0         \n");
+    printf("            ***********************************\n");
+    printf("\n");
+    printf("          _______ ______  _______  _____   _  _____ \n");
+    printf("         |__   __|  ____||__   __||  __ \\ | |/ ____|\n");
+    printf("            | |  | |__      | |   | |__) || | (___  \n");
+    printf("            | |  |  __|     | |   |  _  / | |\\___ \\ \n");
+    printf("            | |  | |____    | |   | | \\ \\ | | ___) |\n");
+    printf("            |_|  |______|   |_|   |_|  \\_\\|_||____/ \n");
+    printf("\n\n\n");
+    printf("             +-------- CONTROL KEYS --------+\n");
+    printf("             |                              |\n");
+    printf("             |   Move Left:   <- or A       |\n");
+    printf("             |   Move Right:  -> or D       |\n");
+    printf("             |   Rotate:       ^ or W       |\n");
+    printf("             |   Hard Drop:    v or S       |\n");
+    printf("             |   Hold Piece:    SPACE       |\n");
+    printf("             |   Pause/Resume:   P          |\n");
+    printf("             |   Quit Game:      Q          |\n");
+    printf("             |   Restart Game:   R          |\n");
+    printf("             |                              |\n");
+    printf("             +------------------------------+\n");
+    printf("\n");
+    printf("                 Your best score is %d\n",g->best_score);
+    printf("              Try to chanllenge yourself now!\n");
+    printf("\n");
+    printf("            ***********************************\n");
+    printf("                   Press any key to play       \n");
+    printf("            ***********************************\n");
+    
+    _getch(); // 等待按键开始游戏
+}
+// 终端光标隐藏函数
+void hide_cursor(void) {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO info;
+    info.dwSize = 100;
+    info.bVisible = FALSE;
+    SetConsoleCursorInfo(consoleHandle, &info);
+}
+// 时延效果
+void time_delay(void) {
+    system("cls");
+    printf("Restarting game in 3...\n");
+    Sleep(1000);
+    system("cls");
+    printf("Restarting game in 2...\n");
+    Sleep(1000);
+    system("cls");
+    printf("Restarting game in 1...\n");
+    Sleep(1000);
+}
+// 显示Hold方块类型
+void display_hold_type(game *g) {
+    switch(g->block_stored->typ) {
+        case TET_I: printf("[I]"); break;
+        case TET_J: printf("[J]"); break;
+        case TET_L: printf("[L]"); break;
+        case TET_O: printf("[O]"); break;
+        case TET_S: printf("[S]"); break;
+        case TET_T: printf("[T]"); break;
+        case TET_Z: printf("[Z]"); break;
+        default: printf("[?]"); break;
+    }
+}
+// 显示Next方块类型
+void display_next_type(game *g) {
+    switch(g->next_block) {
+        case TET_I: printf("[I]"); break;
+        case TET_J: printf("[J]"); break;
+        case TET_L: printf("[L]"); break;
+        case TET_O: printf("[O]"); break;
+        case TET_S: printf("[S]"); break;
+        case TET_T: printf("[T]"); break;
+        case TET_Z: printf("[Z]"); break;
+        default: printf("[?]"); break;
+    }
+}
 // 显示游戏板
 void display_board(game *g) {
     set_cursor_position(0, 0);  // 将光标移动到左上角
     printf("============ TETRIS ============\n");
-    printf("Score: %d  Level: %d  Lines: %d\n", 
-           g->points, g->level, g->lines_to_clear);
+    printf("Score: %d  Level: %d  Lines: %d\n", g->points, g->level, g->lines_to_clear);
+    printf("Best Score: %d",g->best_score);
     printf("\n");
     printf("Hold: ");
     if (g->block_stored != NULL) {

@@ -8,6 +8,7 @@
 #define NUM_TYPES 7        //有7种不同形状的俄罗斯方块
 #define NUM_ORIENTATIONS 4 //每个方块有4种可能的旋转方向
 #define MAX_LEVEL 19       //游戏最高等级
+#define BEST_SCORE_FILE "E:/project/tetris-game/best_score.txt" //最高分数文件路径
 
 
 /*枚举定义*/
@@ -52,6 +53,7 @@ typedef struct {
     int points;            // 当前得分
     int lines_to_clear;   // 升级所需消除的行数
     int tick_timer;      // 用于控制下落速度的计时器
+    int best_score;     // 最高分数
 } game;
 /*核心游戏结构体*/
 
@@ -63,32 +65,46 @@ extern int GRAVITY_LEVEL[MAX_LEVEL + 1];  // 每个等级对应不同的下落�
 extern int SCORE_TABLE[5];  // 0-4行对应的基础分数
 
 
-/* 游戏初始化与销毁(对应logic.c) */
+/* 游戏初始化与销毁 */
 game* game_create(int rows, int cols);  // 创建并初始化游戏对象
 void game_init(game *g, int rows, int cols);  // 初始化游戏对象
 void game_destroy(game *g);  // 销毁游戏对象
 
-/* 游戏逻辑(对应logic.c) */
+/* 游戏逻辑 */
 bool game_tick(game *g, move mov);  // 处理游戏的每个tick，返回游戏是否继续
 bool game_is_over(const game *g);  // 检查游戏是否结束
 
-/* 方块操作(对应block.c) */
+/* 方块操作 */
 void game_move_left(game *g);  // 向左移动方块
 void game_move_right(game *g);  // 向右移动方块
 void game_clock_roll(game *g);  // 顺时针旋转方块
 void game_drop(game *g);  // 快速下落方块(硬降落)
 void game_store(game *g);  // 暂存/交换方块
 
-/* 游戏板操作(对应board.c) */
+/* 游戏板操作 */
 cell game_get_cell_status(const game *g, int row, int col);  // 获取指定位置的单元格状态
 void game_set_cell_status(game *g, int row, int col, cell value);  // 设置指定位置的单元格状态
 bool game_is_valid_position(const game *g, int row, int col);  // 检查指定位置是否在棋盘范围内
+void display_start_screen(game *g);  // 显示游戏启动界面
 void display_board(game *g);  // 显示游戏板
+void hide_cursor(void);  // 隐藏终端光标
+void time_delay(void);  // 实现时间延迟功能
+void display_hold_type(game *g); // 显示Hold方块类型
+void display_next_type(game *g); // 显示Next方块类型
 
-/* 辅助函数(对应logic.c) */
+/* 辅助函数 */
 void game_create_new_block(game *g);  // 生成新的下落方块
 type game_random_block(void);  // 生成随机的方块类型
 int game_check_lines(game *g);  // 检查并消除完整的行，返回消除的行数
 void game_update_grade(game *g, int lines_cleared);  // 根据消除的行数更新分数和等级
+
+/* 游戏最高分管理 */
+bool game_check_best_score(game *g);  // 检查是否达到最高分数
+void game_save_best_score(game *g);  // 保存最高分数
+int game_load_best_score(void);  // 加载最高分数
+void game_update_best_score(game *g);  // 更新最高分数
+
+/* 游戏存档管理 */
+
 
 #endif

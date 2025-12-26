@@ -1,4 +1,4 @@
-# Install script for directory: E:/project/tetris_game
+# Install script for directory: E:/project/tetris-game
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,13 +34,13 @@ endif()
 
 # Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/mingw64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/llvm-mingw-20251216-ucrt-x86_64/bin/llvm-objdump.exe")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "E:/project/tetris_game/build/install_local_manifest.txt"
+  file(WRITE "E:/project/tetris-game/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "E:/project/tetris_game/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "E:/project/tetris-game/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

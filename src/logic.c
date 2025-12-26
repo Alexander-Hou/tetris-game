@@ -75,6 +75,7 @@ void game_init(game *g, int rows, int cols){
     g->points = 0;
     g->lines_to_clear = 10;  // 初始升级所需行数
     g->tick_timer = 0;  // 初始化计时器
+    g->best_score = game_load_best_score(); // 初始化最好分数
     // 生成第一个下落方块
     g->next_block = game_random_block();
     game_create_new_block(g); // 生成第一个下落方块

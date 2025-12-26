@@ -1,26 +1,32 @@
 [
 {
-  "directory": "E:/project/tetris_game/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\main.c.obj -c E:\\project\\tetris_game\\src\\main.c",
-  "file": "E:/project/tetris_game/src/main.c",
+  "directory": "E:/project/tetris-game/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\main.c.obj -c E:\\project\\tetris-game\\src\\main.c",
+  "file": "E:/project/tetris-game/src/main.c",
   "output": "CMakeFiles/tetris.dir/src/main.c.obj"
 },
 {
-  "directory": "E:/project/tetris_game/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\logic.c.obj -c E:\\project\\tetris_game\\src\\logic.c",
-  "file": "E:/project/tetris_game/src/logic.c",
+  "directory": "E:/project/tetris-game/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\logic.c.obj -c E:\\project\\tetris-game\\src\\logic.c",
+  "file": "E:/project/tetris-game/src/logic.c",
   "output": "CMakeFiles/tetris.dir/src/logic.c.obj"
 },
 {
-  "directory": "E:/project/tetris_game/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\board.c.obj -c E:\\project\\tetris_game\\src\\board.c",
-  "file": "E:/project/tetris_game/src/board.c",
+  "directory": "E:/project/tetris-game/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\board.c.obj -c E:\\project\\tetris-game\\src\\board.c",
+  "file": "E:/project/tetris-game/src/board.c",
   "output": "CMakeFiles/tetris.dir/src/board.c.obj"
 },
 {
-  "directory": "E:/project/tetris_game/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\block.c.obj -c E:\\project\\tetris_game\\src\\block.c",
-  "file": "E:/project/tetris_game/src/block.c",
+  "directory": "E:/project/tetris-game/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\block.c.obj -c E:\\project\\tetris-game\\src\\block.c",
+  "file": "E:/project/tetris-game/src/block.c",
   "output": "CMakeFiles/tetris.dir/src/block.c.obj"
+},
+{
+  "directory": "E:/project/tetris-game/build",
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\manage.c.obj -c E:\\project\\tetris-game\\src\\manage.c",
+  "file": "E:/project/tetris-game/src/manage.c",
+  "output": "CMakeFiles/tetris.dir/src/manage.c.obj"
 }
 ]

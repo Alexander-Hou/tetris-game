@@ -25,36 +25,7 @@ int main(int argc, char **argv) {
         system("cls");
 
         // 添加启动界面
-        printf("\n\n\n");
-        printf("            ***********************************\n");
-        printf("                     TETRIS GAME V1.0         \n");
-        printf("            ***********************************\n");
-        printf("\n");
-        printf("          _______ ______  _______  _____   _  _____ \n");
-        printf("         |__   __|  ____||__   __||  __ \\ | |/ ____|\n");
-        printf("            | |  | |__      | |   | |__) || | (___  \n");
-        printf("            | |  |  __|     | |   |  _  / | |\\___ \\ \n");
-        printf("            | |  | |____    | |   | | \\ \\ | | ___) |\n");
-        printf("            |_|  |______|   |_|   |_|  \\_\\|_||____/ \n");
-        printf("\n\n\n");
-        printf("             +-------- CONTROL KEYS --------+\n");
-        printf("             |                              |\n");
-        printf("             |   Move Left:   <- or A       |\n");
-        printf("             |   Move Right:  -> or D       |\n");
-        printf("             |   Rotate:       ^ or W       |\n");
-        printf("             |   Hard Drop:    v or S       |\n");
-        printf("             |   Hold Piece:    SPACE       |\n");
-        printf("             |   Pause/Resume:   P          |\n");
-        printf("             |   Quit Game:      Q          |\n");
-        printf("             |   Restart Game:   R          |\n");
-        printf("             |                              |\n");
-        printf("             +------------------------------+\n");
-        printf("\n");
-        printf("            ***********************************\n");
-        printf("                   Press any key to play       \n");
-        printf("            ***********************************\n");
-        
-        _getch(); // 等待按键开始游戏
+        display_start_screen(g);
 
         // Windows控制台设置
         system("cls");
@@ -62,18 +33,13 @@ int main(int argc, char **argv) {
         Sleep(500);
         
         // 隐藏光标
-        HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_CURSOR_INFO info;
-        info.dwSize = 100;
-        info.bVisible = FALSE;
-        SetConsoleCursorInfo(consoleHandle, &info);
+        hide_cursor();
         
         // 游戏主循环
         while (running) {
             if (!paused) {
             // 执行游戏逻辑
             running = game_tick(g, mov);
-            // 显示游戏界面
             display_board(g);
             }
             
@@ -82,14 +48,14 @@ int main(int argc, char **argv) {
             if (_kbhit()) {
                 int ch = _getch();
                 
-                // 处理功能键（箭头键）
+                // 处理箭头键
                 if (ch == 0 || ch == 0xE0) {
                     ch = _getch();
                     switch (ch) {
-                        case 75: mov = MOV_LEFT; break;    // 左箭头
-                        case 77: mov = MOV_RIGHT; break;   // 右箭头
-                        case 72: mov = MOV_CLOCK; break;   // 上箭头
-                        case 80: mov = MOV_DROP; break;    // 下箭头
+                        case 75: mov = MOV_LEFT; break;    
+                        case 77: mov = MOV_RIGHT; break;   
+                        case 72: mov = MOV_CLOCK; break;   
+                        case 80: mov = MOV_DROP; break;    
                     }
                 } else {
                     // 处理普通按键
@@ -122,42 +88,24 @@ int main(int argc, char **argv) {
                                 system("cls");
                                 printf("============ TETRIS ============\n");
                                 printf("Score: %d  Level: %d  Lines: %d\n", g->points, g->level, g->lines_to_clear);
+                                printf("Best Score: %d",g->best_score);
                                 printf("\n");
                                 printf("Hold: ");
                                 if (g->block_stored != NULL) {
                                     // 显示Hold方块的类型
-                                    switch(g->block_stored->typ) {
-                                        case TET_I: printf("[I]"); break;
-                                        case TET_J: printf("[J]"); break;
-                                        case TET_L: printf("[L]"); break;
-                                        case TET_O: printf("[O]"); break;
-                                        case TET_S: printf("[S]"); break;
-                                        case TET_T: printf("[T]"); break;
-                                        case TET_Z: printf("[Z]"); break;
-                                        default: printf("[?]"); break;
-                            }
+                                    display_hold_type(g);
                                 } else {
                                     printf("[Empty]");
-                        }
+                                }
                                 printf("   Next: ");
                                 // 显示Next方块的类型
-                                switch(g->next_block) {
-                                    case TET_I: printf("[I]"); break;
-                                    case TET_J: printf("[J]"); break;
-                                    case TET_L: printf("[L]"); break;
-                                    case TET_O: printf("[O]"); break;
-                                    case TET_S: printf("[S]"); break;
-                                    case TET_T: printf("[T]"); break;
-                                    case TET_Z: printf("[Z]"); break;
-                                    default: printf("[?]"); break;
-                    }   
+                                display_next_type(g);
                                 printf("\n\n");
                                 printf("\n=== GAME PAUSED ===\n");
                                 printf("Press P to resume\n");
-                            } else {
-                                // 恢复游戏：只需清屏，正常循环会绘制游戏界面
-                                system("cls");
-                            }
+                                } else {
+                                system("cls");  // 恢复游戏：只需清屏，正常循环会绘制游戏界面
+                                }
                             break;
                         case 'r':
                         case 'R':
@@ -165,19 +113,8 @@ int main(int argc, char **argv) {
                             game_destroy(g); // 销毁当前游戏
                             g = game_create(22, 10); // 创建新游戏
                             paused = false; // 确保游戏不在暂停状态
-                            system("cls"); // 清屏
-                            printf("Game restarted!\n");
-                            Sleep(500);
                             // 添加时延效果
-                            system("cls");
-                            printf("Restarting game in 3...\n");
-                            Sleep(1000);
-                            system("cls");
-                            printf("Restarting game in 2...\n");
-                            Sleep(1000);
-                            system("cls");
-                            printf("Restarting game in 1...\n");
-                            Sleep(1000);
+                            time_delay();
                             system("cls"); // 再次清屏，准备显示新游戏
                             running = true; // 确保游戏继续运行
                             break;
@@ -192,9 +129,11 @@ int main(int argc, char **argv) {
             Sleep(50);
         }
         // 游戏结束
+        game_update_best_score(g);
         system("cls");
         printf("Game over!\n");
         printf("You finished with %d points on level %d.\n", g->points, g->level);
+        printf("You best score of the game is %d",g->best_score);
         // 清理
         game_destroy(g);
         // 添加询问是否重新开始
@@ -206,15 +145,7 @@ int main(int argc, char **argv) {
         if (ch == 'r' || ch == 'R') {
             restart = true;
             // 添加时延效果
-            system("cls");
-            printf("Restarting game in 3...\n");
-            Sleep(1000);
-            system("cls");
-            printf("Restarting game in 2...\n");
-            Sleep(1000);
-            system("cls");
-            printf("Restarting game in 1...\n");
-            Sleep(1000);
+            time_delay();
             system("cls");
         } else {
             restart = false;
