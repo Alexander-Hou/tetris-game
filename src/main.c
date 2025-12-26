@@ -184,8 +184,28 @@ int main(int argc, char **argv) {
     printf("You finished with %d points on level %d.\n", g->points, g->level);
     // 清理
     game_destroy(g);
-    printf("Thank you for playing Tetris!\n");
-    printf("Press R to restart or any other key to exit.\n");
-    _getch();
-    return 0;
+    bool restart = false;
+    do {
+        printf("\n");
+        printf("Thank you for playing Tetris!\n");
+        printf("Press R to restart or any other key to exit.\n");
+        // 等待按键
+        int ch = _getch();
+        if (ch == 'r' || ch == 'R') {
+            restart = true;
+            system("cls");
+            printf("Restarting game...\n");
+            Sleep(500);
+            g = game_create(22, 10); // 创建新游戏
+            paused = false; // 确保游戏不在暂停状态
+            system("cls"); // 清屏
+            printf("Game restarted!\n");
+            Sleep(500);
+            system("cls"); // 再次清屏，准备显示新游戏
+            main(argc, argv); // 重新调用main函数开始新游戏
+            break;
+        } else {
+            restart = false;
+        }
+    } while (restart);
 }
