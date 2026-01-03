@@ -12,7 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/project/tetris-game/src/board.c" "CMakeFiles/tetris.dir/src/board.c.obj" "gcc" "CMakeFiles/tetris.dir/src/board.c.obj.d"
   "E:/project/tetris-game/src/logic.c" "CMakeFiles/tetris.dir/src/logic.c.obj" "gcc" "CMakeFiles/tetris.dir/src/logic.c.obj.d"
   "E:/project/tetris-game/src/main.c" "CMakeFiles/tetris.dir/src/main.c.obj" "gcc" "CMakeFiles/tetris.dir/src/main.c.obj.d"
-  "E:/project/tetris-game/src/manage.c" "CMakeFiles/tetris.dir/src/manage.c.obj" "gcc" "CMakeFiles/tetris.dir/src/manage.c.obj.d"
+  "E:/project/tetris-game/src/score.c" "CMakeFiles/tetris.dir/src/score.c.obj" "gcc" "CMakeFiles/tetris.dir/src/score.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -25,8 +25,8 @@
 },
 {
   "directory": "E:/project/tetris-game/build",
-  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\manage.c.obj -c E:\\project\\tetris-game\\src\\manage.c",
-  "file": "E:/project/tetris-game/src/manage.c",
-  "output": "CMakeFiles/tetris.dir/src/manage.c.obj"
+  "command": "C:\\llvm-mingw-20251216-ucrt-x86_64\\bin\\clang.exe  @CMakeFiles/tetris.dir/includes_C.rsp -g -std=c11 -O0 -g -o CMakeFiles\\tetris.dir\\src\\score.c.obj -c E:\\project\\tetris-game\\src\\score.c",
+  "file": "E:/project/tetris-game/src/score.c",
+  "output": "CMakeFiles/tetris.dir/src/score.c.obj"
 }
 ]

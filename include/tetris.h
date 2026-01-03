@@ -8,8 +8,7 @@
 #define NUM_TYPES 7        //有7种不同形状的俄罗斯方块
 #define NUM_ORIENTATIONS 4 //每个方块有4种可能的旋转方向
 #define MAX_LEVEL 19       //游戏最高等级
-#define BEST_SCORE_FILE "E:/project/tetris-game/best_score.txt" //最高分数文件路径
-
+#define BEST_SCORE_FILE "../../best_score.txt" //最高分数文件路径
 
 /*枚举定义*/
 typedef enum {
@@ -103,8 +102,4 @@ bool game_check_best_score(game *g);  // 检查是否达到最高分数
 void game_save_best_score(game *g);  // 保存最高分数
 int game_load_best_score(void);  // 加载最高分数
 void game_update_best_score(game *g);  // 更新最高分数
-
-/* 游戏存档管理 */
-
-
 #endif

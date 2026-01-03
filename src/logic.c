@@ -9,7 +9,7 @@ location shape[NUM_TYPES][NUM_ORIENTATIONS][TETRIS] = {
     {{{0, 1}, {1, 1}, {2, 1}, {3, 1}},    // 状态0
      {{2, 0}, {2, 1}, {2, 2}, {2, 3}},    // 状态1
      {{0, 1}, {1, 1}, {2, 1}, {3, 1}},    // 状态2
-     {{2, 0}, {2, 1}, {2, 2}, {2, 3}}},   // 状态3   // 垂直
+     {{2, 0}, {2, 1}, {2, 2}, {2, 3}}},   // 状态3
     // J
     {{{0, 0}, {1, 0}, {1, 1}, {1, 2}},
      {{0, 1}, {0, 2}, {1, 1}, {2, 1}},
@@ -43,8 +43,8 @@ location shape[NUM_TYPES][NUM_ORIENTATIONS][TETRIS] = {
 };
 // 重力速度表（每个等级对应的下落速度，单位：毫秒）
 int GRAVITY_LEVEL[MAX_LEVEL + 1] = {
-    1000, 850, 720, 610, 520, 440, 380, 320, 270, 230,
-    200, 170, 140, 120, 100, 85, 70, 60, 50, 40
+    1000, 950, 900, 850, 800, 750, 700, 650, 600, 550,
+    500, 450, 400, 350, 300, 250, 200, 150, 100, 50
 };
 // 消行得分表（每次消除对应的得分）
 int SCORE_TABLE[5] = {0, 100, 250, 500, 1000};
@@ -82,18 +82,23 @@ void game_init(game *g, int rows, int cols){
 }
 // 销毁游戏对象
 void game_destroy(game *g){
+    if(!g) return;
     // 释放游戏板内存
-    for (int i = 0; i < g->rows; i++) {
-        free(g->board[i]);
+    if (g->board){
+        for (int i = 0; i < g->rows; i++) {
+            if(g->board[i]) free(g->board[i]);
+        }
     }
     free(g->board);
     // 释放当前下落方块内存
     if (g->block_dropped) {
         free(g->block_dropped);
+        g->block_dropped = NULL;
     }
     // 释放保留方块内存
     if (g->block_stored) {
         free(g->block_stored);
+        g->block_stored = NULL;
     }
     free(g);  // 释放游戏对象内存
 }

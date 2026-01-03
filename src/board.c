@@ -39,12 +39,12 @@ static void set_cursor_position(int x, int y) {
 }
 // 显示启动界面
 void display_start_screen(game *g) {
+    if (!g) return;
     system("cls"); // 清屏
+    printf("            ***********************************\n");
+    printf("                     TETRIS GAME V1.0\n");
+    printf("            ***********************************\n");
     printf("\n\n\n");
-    printf("            ***********************************\n");
-    printf("                     TETRIS GAME V1.0         \n");
-    printf("            ***********************************\n");
-    printf("\n");
     printf("          _______ ______  _______  _____   _  _____ \n");
     printf("         |__   __|  ____||__   __||  __ \\ | |/ ____|\n");
     printf("            | |  | |__      | |   | |__) || | (___  \n");
@@ -65,7 +65,9 @@ void display_start_screen(game *g) {
     printf("             |                              |\n");
     printf("             +------------------------------+\n");
     printf("\n");
-    printf("                 Your best score is %d\n",g->best_score);
+    if (g){
+        printf("                 Your best score is %d\n",g->best_score);
+    }
     printf("              Try to chanllenge yourself now!\n");
     printf("\n");
     printf("            ***********************************\n");

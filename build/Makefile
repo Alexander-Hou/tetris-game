@@ -224,29 +224,29 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/manage.obj: src/manage.c.obj
-.PHONY : src/manage.obj
+src/score.obj: src/score.c.obj
+.PHONY : src/score.obj
 
 # target to build an object file
-src/manage.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.obj
-.PHONY : src/manage.c.obj
+src/score.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/score.c.obj
+.PHONY : src/score.c.obj
 
-src/manage.i: src/manage.c.i
-.PHONY : src/manage.i
+src/score.i: src/score.c.i
+.PHONY : src/score.i
 
 # target to preprocess a source file
-src/manage.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.i
-.PHONY : src/manage.c.i
+src/score.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/score.c.i
+.PHONY : src/score.c.i
 
-src/manage.s: src/manage.c.s
-.PHONY : src/manage.s
+src/score.s: src/score.c.s
+.PHONY : src/score.s
 
 # target to generate assembly for a file
-src/manage.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/manage.c.s
-.PHONY : src/manage.c.s
+src/score.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tetris.dir\build.make CMakeFiles/tetris.dir/src/score.c.s
+.PHONY : src/score.c.s
 
 # Help Target
 help:
@@ -269,9 +269,9 @@ help:
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
-	@echo ... src/manage.obj
-	@echo ... src/manage.i
-	@echo ... src/manage.s
+	@echo ... src/score.obj
+	@echo ... src/score.i
+	@echo ... src/score.s
 .PHONY : help
 
 

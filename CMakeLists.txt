@@ -22,7 +22,7 @@ set(SOURCES
     ${SRC_DIR}/logic.c
     ${SRC_DIR}/board.c
     ${SRC_DIR}/block.c
-    ${SRC_DIR}/manage.c
+    ${SRC_DIR}/score.c
 )
 
 # 列出所有头文件（在include目录下）

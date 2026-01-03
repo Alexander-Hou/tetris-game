@@ -85,7 +85,6 @@ int main(int argc, char **argv) {
                             if (paused) {
                                 // 进入暂停：清屏并显示暂停界面
                                 system("cls");
-                                system("cls");
                                 printf("============ TETRIS ============\n");
                                 printf("Score: %d  Level: %d  Lines: %d\n", g->points, g->level, g->lines_to_clear);
                                 printf("Best Score: %d",g->best_score);
@@ -133,7 +132,7 @@ int main(int argc, char **argv) {
         system("cls");
         printf("Game over!\n");
         printf("You finished with %d points on level %d.\n", g->points, g->level);
-        printf("You best score of the game is %d",g->best_score);
+        printf("Your best score of the game is %d",g->best_score);
         // 清理
         game_destroy(g);
         // 添加询问是否重新开始

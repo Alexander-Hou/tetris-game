@@ -2,20 +2,18 @@
 #include <stdlib.h>
 #include "tetris.h"
 #include <stdbool.h>
-
+/* 最高分管理 */
 // 检查当前分数是否超过最高分数
 bool game_check_best_score(game *g){
-        int best_score = game_load_best_score();
-        return g->points > best_score;
+        int loaded_best = game_load_best_score();
+        return g->points > loaded_best;
 }
 
 // 保存最高分数到文件
 void game_save_best_score(game *g){
     FILE *file = fopen(BEST_SCORE_FILE,"w");
     if (file != NULL) {
-        if (game_check_best_score(g)){
-            fprintf(file, "%d", g->best_score);
-        }
+        fprintf(file, "%d", g->best_score);
         fclose(file);
     } else {
         perror("Failed to open best score file for writing");  // 无法打开文件进行写入

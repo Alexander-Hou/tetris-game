@@ -75,9 +75,6 @@ void game_store(game *g){
         }
         *g->block_stored = *g->block_dropped;
         game_create_new_block(g);
-    } else if (g->block_stored->typ == -1) {
-        *g->block_stored = *g->block_dropped;
-        game_create_new_block(g);
     } else {
         // 交换当前方块和保留方块
         tetris temp = *g->block_dropped;
